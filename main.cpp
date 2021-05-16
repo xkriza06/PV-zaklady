@@ -7,7 +7,7 @@ int main(int argc, char** argv )
         printf("bad args\n");
         return -1;
     }
-    
+
     cv::Mat image;
     image = cv::imread( argv[1], 1 );
     if ( !image.data )
@@ -19,9 +19,11 @@ int main(int argc, char** argv )
 
 
     IMG img1{image};
-    img1.rgbToGray();
-    img1.print(320,400);
+    IMG imgGray{img1.rgbToGray()};
 
+    IMG imgSobel{imgGray.graySobelFilter()};
+   // imgSobel.print(320,400);
+   imgSobel.print();
 
     cv::waitKey(0);
     return 0;

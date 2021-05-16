@@ -16,9 +16,14 @@ class IMG
 
 
     public:
-        IMG(cv::Mat cvImg);
-        const pair<uchar*,int> pixel(uint x, uint y);
+        IMG(cv::Mat &cvImg);
+        IMG(vector<uchar> &data, size_t numOfPixels, int collumns, int rows, int channels):
+                data{data}, numOfPixels{numOfPixels}, collumns{collumns}, rows{rows}, channels{channels} {};
+        const pair<uchar*,int> pixel(uint horizontalAx, uint verticalAx);
         void print();
         void print(int w, int h);
-        void rgbToGray();
+        
+        IMG rgbToGray()const;
+        int convolution3x3(int x, int y, vector<int> &kernel);
+        IMG graySobelFilter();
 };
