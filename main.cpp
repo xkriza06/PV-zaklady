@@ -23,8 +23,16 @@ int main(int argc, char** argv )
 
     IMG imgSobel{imgGray.graySobelFilter()};
    // imgSobel.print(320,400);
-   imgSobel.print();
+ //  imgSobel.print();
 
-    cv::waitKey(0);
+
+   vector<uchar> houghV;
+   imgSobel.hough(houghV);
+
+
+
+
+
+
     return 0;
 }

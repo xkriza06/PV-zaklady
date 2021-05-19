@@ -7,23 +7,29 @@
 using namespace std;
 class IMG
 {
-    private:
+    public:
         vector<uchar> data;
         size_t numOfPixels;
         int collumns;
         int rows;
         int channels;
+        vector<double> gradientAngle;     // sequences of 2 vals - angle and weight
 
 
     public:
         IMG(cv::Mat &cvImg);
-        IMG(vector<uchar> &data, size_t numOfPixels, int collumns, int rows, int channels):
-                data{data}, numOfPixels{numOfPixels}, collumns{collumns}, rows{rows}, channels{channels} {};
+        IMG(vector<uchar> &data, size_t numOfPixels, int collumns, int rows, int channels, vector<double> gradientAngle={}):
+                data{data}, numOfPixels{numOfPixels}, collumns{collumns}, rows{rows}, channels{channels}, gradientAngle{gradientAngle} {};
         const pair<uchar*,int> pixel(uint horizontalAx, uint verticalAx);
         void print();
         void print(int w, int h);
-        
+
         IMG rgbToGray()const;
         int convolution3x3(int x, int y, vector<int> &kernel);
         IMG graySobelFilter();
+        void hough(vector<uchar> &houghSpace);
 };
+
+
+float sigmoid(int x);
+
