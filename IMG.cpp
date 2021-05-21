@@ -1,6 +1,4 @@
 #include "head.hpp"
-#include <cmath>
-using namespace std;
 
 const auto REDcomponent = 0.3;                  // ratio of red component in white light
 const auto GREENcomponent = 0.6;                // ratio of green component in white light
