@@ -16,23 +16,16 @@ int main(int argc, char** argv )
         return -1;
     }
 
-
-
     IMG img1{image};
     IMG imgGray{img1.rgbToGray()};
-
-    IMG imgSobel{imgGray.graySobelFilter()};
-   // imgSobel.print(320,400);
- //  imgSobel.print();
-
-
-   vector<uchar> houghV;
-   imgSobel.hough(houghV);
-
-
-
-
-
+    IMG_sobel imgSobel{imgGray.graySobelFilter()};
+    IMG imgHough{imgSobel.houghCreate()};
+  
+    img1.print(1280,720);
+    imgGray.print(1280,720);
+    imgSobel.print(1280,720);
+    imgHough.print(1280,720);
+    img1.print(1280,720, imgHough.HougheEnumerateLines(img1));
 
     return 0;
 }
